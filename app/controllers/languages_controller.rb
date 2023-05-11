@@ -4,11 +4,11 @@ class LanguagesController < ApplicationController
     @language = Language.new
   end
 
-  def create 
+  def create
     @languages = Language.all
     @language = Language.new(language_params)
     access_token = ENV['GH_ACCESS_TOKEN']
-    url = "https://api.github.com/search/repositories?q=language:ruby&sort=stars&per_page=5"
+    url = "https://api.github.com/search/repositories?q=language:#{@language.name}&sort=stars&per_page=5"
     request = HTTParty.get(
       url,
       headers: { Authorization: "Bearer #{access_token}" }
@@ -21,7 +21,7 @@ class LanguagesController < ApplicationController
     else
       render :index
     end
-  end 
+  end
 
   def destroy
     @language = Language.find(params[:id])
@@ -33,7 +33,7 @@ class LanguagesController < ApplicationController
 
   def language_params
     params.require(:language).permit(:name)
-  end 
+  end
 
   def create_repos(items, language)
     items.each do |item|
@@ -54,5 +54,5 @@ class LanguagesController < ApplicationController
 
       repo.save
     end
-  end 
+  end
 end
