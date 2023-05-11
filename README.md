@@ -17,6 +17,8 @@ Configuration
   
 Send your token to the deploy service that you want to use and keep the same variable name, otherwise you won't be able to make the requests.
 
+If you want to quickly change which languages you are using, easily go to app/views/languages/index.html.erb and change the array of languages on line 5.
+
 To see it's live version running, check on http://http://icertus-challenge-backend.herokuapp.com
 
 Thanks for checking it out!
