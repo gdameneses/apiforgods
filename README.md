@@ -1,9 +1,11 @@
 This is an app that consumes GitHub API to list and show information about 5 most starred repos of Ruby, Haskell, C, JavaScript and Python.
 
 Ruby version: 3.2.2
+
 Rails version: 7.0.4
 
 Gems: Simpleform, HTTParty and dotenv-rails.
+
 Database: PostgreSQL
 
 Configuration
