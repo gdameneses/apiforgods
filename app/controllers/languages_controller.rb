@@ -7,8 +7,12 @@ class LanguagesController < ApplicationController
   def create 
     @languages = Language.all
     @language = Language.new(language_params)
-    url = "https://api.github.com/search/repositories?q=language:#{@language.name.downcase}&sort=stars&per_page=5"
-    request = HTTParty.get(url)
+    access_token = ENV['GH_ACCESS_TOKEN']
+    url = "https://api.github.com/search/repositories?q=language:ruby&sort=stars&per_page=5"
+    request = HTTParty.get(
+      url,
+      headers: { Authorization: "Bearer #{access_token}" }
+    )
     request_hash = request.to_h
     items = request_hash['items']
     create_repos(items, @language)
