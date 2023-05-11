@@ -1,24 +1,22 @@
-# README
+This is an app that consumes GitHub API to list and show information about 5 most starred repos of Ruby, Haskell, C, JavaScript and Python.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Ruby version: 3.2.2
+Rails version: 7.0.4
 
-Things you may want to cover:
+Gems: Simpleform, HTTParty and dotenv-rails.
+Database: PostgreSQL
 
-* Ruby version
+Configuration
+- clone the repo
+- run bundle install
+- run a postgres server locally
+- run rails db:migrate
+- generate a github api token with read access to repositories
+- create a ".env" file, on the root path of the app with this line:
+    GH_ACCESS_TOKEN=[YOUR_TOKEN_HERE]
+  
+Send your token to the deploy service that you want to use and keep the same variable name, otherwise you won't be able to make the requests.
 
-* System dependencies
+To see it's live version running, check on http://http://icertus-challenge-backend.herokuapp.com
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Thanks for checking it out!
