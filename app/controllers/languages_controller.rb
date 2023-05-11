@@ -18,8 +18,6 @@ class LanguagesController < ApplicationController
     create_repos(items, @language)
     if @language.save
       redirect_to :root
-    else
-      render :index
     end
   end
 
@@ -37,10 +35,12 @@ class LanguagesController < ApplicationController
 
   def create_repos(items, language)
     items.each do |item|
-      repo_languages = HTTParty.get('https://api.github.com/repos/rails/rails/languages').to_h.keys
+      repo_owner = item['owner']['login']
+      repo_name = item['name']
+      repo_languages = HTTParty.get("https://api.github.com/repos/#{repo_owner}/#{repo_name}/languages").to_h.keys
       repo = Repo.new(
-        full_name: item['name'],
-        owner: item['owner']['login'],
+        full_name: repo_name,
+        owner: repo_owner,
         description: item['description'],
         api_url: item['api_url'],
         html_url: item['html_url'],
