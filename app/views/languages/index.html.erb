@@ -1,0 +1,22 @@
+<h1>iCertus backend dev test</h1>
+<p>Select from one of the languages below to get top 5 repositories from github</p>
+
+<%= simple_form_for Language.new do |f| %>
+    <%= f.select :name, ['Ruby', 'Haskell', 'C', 'JavaScript', 'Python']%>
+    <%= f.submit 'Get Repos!' %>
+<% end %>
+
+<div class="langs-index">
+    <% @languages.all.each do |language| %>
+        <div class="lang">
+            <h2><%= language.name %></h2>
+            <% language.repos.each do |repo| %>
+                <div class="repo">
+                    <h3><%= repo.full_name %></h3>
+                    <p><%= repo.description %></p>
+                    <%= link_to 'View details', '#' %>
+                </div>
+            <% end %>
+        </div>  
+    <% end %>
+</div>
