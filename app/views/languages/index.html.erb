@@ -6,15 +6,19 @@
     <%= f.submit 'Get Repos!' %>
 <% end %>
 
+<%= link_to 'Favorite repos', bookmarks_path %>
+
 <div class="langs-index">
     <% @languages.all.each do |language| %>
         <div class="lang">
-            <h2><%= language.name %></h2>
+            <h2 style="background-color: rgba(40, 40, 40, 0.2); margin-bottom: 0"><%= language.name %></h2>
+            <%= link_to 'Delete', language_path(language), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
             <% language.repos.each do |repo| %>
-                <div class="repo">
+                <div class="repo" style="margin: 2rem 1rem">
                     <h3><%= repo.full_name %></h3>
                     <p><%= repo.description %></p>
-                    <%= link_to 'View details', '#' %>
+                    <%= link_to 'View details', repo_path(repo) %>
+                    <%= link_to 'Favorite', bookmarks_path(repo: repo), data: {turbo_method: :post, turbo_confirm: 'Add to favorites?'} %>
                 </div>
             <% end %>
         </div>  

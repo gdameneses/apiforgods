@@ -1,0 +1,10 @@
+<h1><%= @repo.full_name %></h1>
+<h3>Created by: <%= @repo.owner %></h3>
+<p>Description: <%= @repo.description %></p>
+<a href=<%=@repo.html_url%>>View on github</a>
+<p>SSH to clone: <%= @repo.ssh_url %></p>
+<p>Languages: <%=JSON[@repo.languages].join(', ')%></p>
+<p>Stars: <%= @repo.stars %></p>
+<p>Created at: <%= @repo.created.to_datetime.strftime("%d/%m/%Y %H:%M") %></p>
+<p>Last updated: <%= @repo.updated.to_datetime.strftime("%d/%m/%Y %H:%M") %></p>
+<%= link_to 'Favorite', bookmarks_path(repo: @repo), data: {turbo_method: :post, turbo_confirm: 'Add to favorites?'} %>

@@ -1,0 +1,7 @@
+<h1>Favorite repositories</h1>
+    <% @bookmarks.each do |bookmark| %>
+    <h3><%= bookmark.repo.full_name %></h3>
+    <p><%= bookmark.repo.description %></p>
+    <%= link_to 'View details', '#' %>
+    <%= link_to 'Remove from favorites', bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+<% end %>

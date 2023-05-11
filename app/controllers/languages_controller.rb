@@ -22,10 +22,11 @@ class LanguagesController < ApplicationController
       render :index
     end
   end 
-  def show
-  end
 
   def destroy
+    @language = Language.find(params[:id])
+    @language.destroy
+    redirect_to :root
   end
 
   private
@@ -46,8 +47,8 @@ class LanguagesController < ApplicationController
         ssh_url: item['ssh_url'],
         languages: repo_languages,
         stars: item['stargazers_count'],
-        created: item['created_at'].to_s,
-        updated: item['updated_at'].to_s,
+        created: item['created_at'],
+        updated: item['updated_at']
       )
       repo.language = language
 
