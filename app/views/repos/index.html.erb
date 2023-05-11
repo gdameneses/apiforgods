@@ -1,0 +1,7 @@
+<h1>Fetched repositories</h1>
+<h2>This shows all repositories that you've fetched from GitHub Rest API</h2>
+<% @repos.each do |repo| %>
+    <h3><%= repo.full_name %></h3>
+    <h4>Language:<%= repo.languages %></h4>
+    <a href="#">Details</a>
+<% end %>
